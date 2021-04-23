@@ -1,4 +1,15 @@
-﻿namespace DesignPatterns
+﻿using DesignPatterns.BehavioralPatterns.StatePattern;
+using DesignPatterns.BehavioralPatterns.StrategyPattern;
+using DesignPatterns.CreationalPatterns;
+using DesignPatterns.CreationalPatterns.AbstractFactoryPattern;
+using DesignPatterns.CreationalPatterns.AbstractFactoryPattern.Factory;
+using DesignPatterns.CreationalPatterns.FactoryMethodPattern;
+using DesignPatterns.CreationalPatterns.FactoryMethodPattern.Factory;
+using DesignPatterns.StructuralPatterns.AdapterPattern;
+using System;
+using System.Collections.Generic;
+
+namespace DesignPatterns
 {
     class Program
     {
@@ -8,6 +19,29 @@
             #region Creational Patterns
             #region Singleton Pattern
             //Singleton singleton = Singleton.Instance;
+
+            Console.WriteLine("------Singleton Pattern------");
+            LoadBalancer b1 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b2 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b3 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b4 = LoadBalancer.GetLoadBalancer();
+
+            // Same instance?
+            if (b1 == b2 && b2 == b3 && b3 == b4)
+            {
+                Console.WriteLine("Same instance\n");
+            }
+
+            // Load balance 15 server requests
+            LoadBalancer balancer = LoadBalancer.GetLoadBalancer();
+            for (int i = 0; i < 15; i++)
+            {
+                string server = balancer.Server;
+                Console.WriteLine("Dispatch Request to: " + server);
+            }
+
+            // Wait for user
+            Console.ReadKey();
             #endregion
 
             #region Factory Method Pattern
